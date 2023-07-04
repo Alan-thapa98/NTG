@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit essays{% endblock title %}
+
+<!-- {% block homeactive %} active {% endblock homeactive %} -->
+{% block body %}
+<div class="">
+              <div class=" text-center">
+                            <h3>Essays, Bios, Anime , etc festivals,and others reated informations, animals,plants etc
+                            </h3>
+                            <div class="row">
+                                          <div class="col-12 text-center m-3"><a
+                                                                      href="/essay_and_bio/upload/upload_essay_and_bio_on_getanswr_9813587726">
+                                                                      <button class="btn-sm bg-success">Add
+                                                                                    More..</button>
+                                                        </a>
+                                          </div>
+                            </div>
+                            <table class="table table-bordered table-responsive ">
+                                          <thead class="bg-dark text-light">
+                                                        <tr>
+                                                                      <th scope="col">#</th>
+                                                                      <th scope="col">Essay Name</th>
+                                                                      <th scope="col">Essay </th>
+                                                                      <th scope="col">Author</th>
+                                                                      <th scope="col">types</th>
+                                                                      <th scope="col">language</th>
+                                                                      <th scope="col">views</th>
+                                                                      <th scope="col">Handle</th>
+                                                        </tr>
+                                          </thead>
+                                          <tbody>
+                                                        {% for i in all_essay_and_bio %}
+                                                        {% ifequal request.user i.user.user %}
+                                                        <tr>
+                                                                      <th scope="row">{{ forloop.counter }}</th>
+                                                                      <td>{{i.essay_or_bio_name}}</td>
+                                                                      <td><a href="/essay_and_bio/read/{{i.slug}}">{{i.content|safe|truncatechars:200}}</a>
+                                                                      </td>
+                                                                      <td>{{i.author}}</td>
+                                                                      <td>{{i.types}}</td>
+                                                                      <td>{{i.language}}</td>
+                                                                      <td>{{i.views}}</td>
+                                                                      <td>
+                                                                                    <a href="{{i.slug}}/update_essays">
+                                                                                                  <button type="button"
+                                                                                                                class="btn btn-sm btn-outline-primary">Edit</button>
+
+                                                                                    </a>
+                                                                                    <a href="{{i.slug}}/delete_essays">
+                                                                                                  <button type="button"
+                                                                                                                class="btn btn-sm btn-outline-secondary">Delete</button>
+                                                                                    </a>
+                                                                      </td>
+                                                        </tr>
+
+                                                        {% endifequal %}
+
+
+
+                                                        {% endfor %}
+
+                                          </tbody>
+                            </table>
+
+              </div>
+
+</div>
+{% endblock body %}

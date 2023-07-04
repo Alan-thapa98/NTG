@@ -1,0 +1,349 @@
+{% extends 'base.html' %}
+
+{% block title %}
+All Essays
+{% endblock title %}
+{% block essayactive %} active {% endblock essayactive %}
+{% block essayactive2 %} active2 {% endblock essayactive2 %}
+
+{% block body %}
+
+      <style>
+        .wrapper {
+          max-width: 100%;
+          height: auto;
+          margin-top: 150px;
+          margin-bottom: 65px;
+          justify-items: center;
+          align-items: center;
+        }
+      
+        .wrapper .search-input {
+          background: rgb(116, 110, 110);
+          width: 100%;
+          border-radius: 5px;
+          position: relative;
+          box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.12);
+        }
+      
+        .search-input input {
+          height: 55px;
+          width: 100%;
+          outline: none;
+          border: none;
+          border-radius: 5px;
+          padding: 0 60px 0 20px;
+          font-size: 18px;
+          box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+        }
+      
+        .search-input.active input {
+          border-radius: 5px 5px 0 0;
+        }
+      
+        .search-input .autocom-box {
+          padding: 0;
+          opacity: 0;
+          pointer-events: none;
+          max-height: 280px;
+          overflow-y: auto;
+        }
+      
+        .search-input.active .autocom-box {
+          padding: 10px 8px;
+          opacity: 1;
+          pointer-events: auto;
+        }
+      
+        .autocom-box li {
+          list-style: none;
+          padding: 8px 12px;
+          display: none;
+          width: 100%;
+          cursor: default;
+          border-radius: 3px;
+        }
+      
+        .search-input.active .autocom-box li {
+          display: block;
+        }
+      
+        .autocom-box li:hover {
+          background: rgb(0, 255, 81);
+          cursor: pointer;
+        }
+      
+        .search-input .icon {
+          display: none;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+          height: 55px;
+          width: 55px;
+          text-align: center;
+          line-height: 55px;
+          font-size: 20px;
+          color: #644bff;
+          cursor: pointer;
+        }
+      
+      </style>
+      
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="row ">
+            <div class="search-input mt-4 mb-3">
+              <form class="form-inline" action="/search_essays">
+                <input name="query" autocomplete="off" type="text" height="10%" width="100%"
+                  placeholder="Search Essays and Bios on GetAnswr">
+                <div class="autocom-box">
+                  <!-- here list are inserted from javascript -->
+                </div>
+                <div class="icon"><i class="fas fa-search"></i></div>
+              </form>
+            </div>
+          </div>
+    </div>
+    <div class="row p-md-2 p-lg-4">
+        <div class="col-12 col-md-12 col-lg-8">
+            <div class="padding-30 rounded bordered">
+                <div class="row">
+                    {% for i in eassay_list %}
+                    <div class="col-md-12 col-sm-6">
+                        <!-- post  -->
+                        <div class="post post-list clearfix">
+                            <div class="thumb rounded">
+                                <span class="post-format-sm">
+                                    <i class="icon-picture"></i>
+                                </span>
+                                <a href="/essay_and_bio/read/{{i.slug}}">
+                                    <div class="inner">
+                                        <img src="{{i.essay_or_bio_image.url}}" alt="">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="details">
+                                <ul class="meta list-inline mb-3">
+                                    <li class="list-inline-item">
+                                        <a href="/essay_and_bio/read/{{i.slug}}">
+                                            <img src="../static/images/other/user.jpg" class="author" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        {{i.author}}
+                                    </li>
+                                    <li class="list-inline-item">
+                                        {{i.types}}
+                                    </li>
+                                    <li class="list-inline-item">
+                                        {{i.timeStamp|safe|truncatechars:11}}
+                                    </li>
+                                </ul>
+                                <h3 class="post-tile">
+                                    <a href="/essay_and_bio/read/{{i.slug}}">
+                                        {{i.essay_or_bio_name}}
+                                    </a>
+                                </h3>
+                                <a class="text-dark " href="/essay_and_bio/read/{{i.slug}}">
+                                  <p class="answr">{{i.content|safe | truncatechars:120}}</p>
+                                </a>
+
+                               
+                                <div class="post-bottom clearfix d-flex align-items-center">
+                                    <div class="social-share me-auto">
+                                        <button class="toggle-button icon-share"></button>
+                                        <ul class="icons list-unstyled list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#"><i class="fab fa-pinterest"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="#"><i class="far fa-envelope"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    {%if user.is_authenticated%}
+                                    <div class="more-button float-end">
+
+                                        {%ifequal request.user i.user.user%}
+                                        <div class="row p-0 m-0">
+                                            <div class="col-6 ">
+                                                <a href="/essay_and_bio/{{i.slug}}/delete_essays">
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-outline-secondary">Delete</button>
+                                                </a>
+                                            </div>
+                                            <div class="col-6  text-right">
+                                                <a href="/essay_and_bio/{{i.slug}}/update_essays">
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-outline-primary">Edit</button>
+
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    {%endifequal%}
+                                    {%else%}
+                                    <div class="more-button float-end">
+                                        <span class="icon-options"></span></a>
+                                    </div>
+                                    {%endif%}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+
+
+
+            </div>
+            <!-- Paginator -->
+            <!-- disabled -->
+            <div class="row mt-2 ">
+                <div class="col-6 text-left">
+                    {% if eassay_list.has_previous %}
+                    <a class="btn btn-success" href="?page={{ eassay_list.previous_page_number }}"><span><i
+                                class="fas fa-arrow-left"></i>
+                            Prev Page</span></a>
+
+                    {% else %}
+                    <a class="btn btn-light disabled text-dark" href="#" tabindex="-1" aria-disabled="true"><span><i
+                                class="fas fa-arrow-left"></i>
+                            Prev Page</span></a>
+
+                    {% endif %}
+                </div>
+                <div class="col-6 text-right">
+                    {% if eassay_list.has_next %}
+
+                    <a class="btn btn-success" href="?page={{ eassay_list.next_page_number }}"><span>Next
+                            Page <i class="fas fa-arrow-right"></i></span></a>
+
+                    {% else %}
+                    <a class="btn btn-light disabled" href="#" tabindex="-1" aria-disabled="true"><span>Next Page
+                            <i class="fas fa-arrow-right"></i></span></a>
+
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="col-12 col-md-12 col-lg-4">
+            <!--play games -->
+{% include 'sidebar.html' %}
+        </div>
+
+    </div>
+
+
+
+    <!-- essays -->
+
+
+
+    <script>
+        let suggestions = [
+ 
+          {% for q in suggestios_of_essays_and_bios %}
+        "{{q.essay_or_bio_name}}",
+          {% endfor %}
+      
+      ];
+      
+      </script>
+      
+      <script>
+        // getting all required elements
+        const searchWrapper = document.querySelector(".search-input");
+        const inputBox = searchWrapper.querySelector("input");
+        const suggBox = searchWrapper.querySelector(".autocom-box");
+        const icon = searchWrapper.querySelector(".icon");
+        let linkTag = searchWrapper.querySelector("a");
+        let webLink;
+      
+        // if user press any key and release
+        inputBox.onkeyup = (e) => {
+          let userData = e.target.value; //user enetered data
+          let emptyArray = [];
+          if (userData) {
+            icon.onclick = () => {
+              webLink = `https://www.google.com/search?q=${userData}`;
+              linkTag.setAttribute("href", webLink);
+              linkTag.click();
+            }
+            emptyArray = suggestions.filter((data) => {
+              //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
+              return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
+            });
+            emptyArray = emptyArray.map((data) => {
+              // passing return data inside li tag
+              return data = `<li>${data}</li>`;
+            });
+            searchWrapper.classList.add("active"); //show autocomplete box
+            showSuggestions(emptyArray);
+            let allList = suggBox.querySelectorAll("li");
+            for (let i = 0; i < allList.length; i++) {
+              //adding onclick attribute in all li tag
+              allList[i].setAttribute("onclick", "select(this)");
+            }
+          } else {
+            searchWrapper.classList.remove("active"); //hide autocomplete box
+          }
+        }
+      
+        function select(element) {
+          let selectData = element.textContent;
+          inputBox.value = selectData;
+          icon.onclick = () => {
+            webLink = `https://www.google.com/search?q=${selectData}`;
+            linkTag.setAttribute("href", webLink);
+            linkTag.click();
+          }
+          searchWrapper.classList.remove("active");
+        }
+      
+        function showSuggestions(list) {
+          let listData;
+          if (!list.length) {
+            userValue = inputBox.value;
+            listData = `<li>${userValue}</li>`;
+          } else {
+            listData = list.join('');
+          }
+          suggBox.innerHTML = listData;
+        }
+      
+      </script>
+      
+</div>
+    {% endblock body %}

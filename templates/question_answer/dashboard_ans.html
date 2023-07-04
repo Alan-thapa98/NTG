@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Answers {% endblock title %}
+
+<!-- {% block homeactive %} active {% endblock homeactive %} -->
+{% block body %}
+<div class=" text-center">
+              <h3>Answer question, Quiz,Different Between,quiz, Full forms,etc.</h3>
+              <div class="row">
+                            <div class="col-12 text-center m-3"><a href="/QandA/upload_qanda_on_getanswr_9813587726">
+                                                        <button class="btn-sm bg-success">Add More..</button>
+                                          </a>
+                            </div>
+              </div>
+              <table class="table table-bordered table-responsive ">
+
+                            <thead class="bg-dark text-light">
+
+
+                                          <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Qun</th>
+                                                        <th scope="col">Ans</th>
+                                                        <th scope="col">Author</th>
+                                                        <th scope="col">types</th>
+                                                        <th scope="col">language</th>
+                                                        <th scope="col">subject</th>
+                                                        <th scope="col">views</th>
+                                                        <th scope="col">class</th>
+                                                        <th scope="col">Handle</th>
+                                          </tr>
+                            </thead>
+
+
+                            {% for i in all_ans %}
+                            {% ifequal request.user i.user.user %}
+                            <tbody>
+                                          <tr>
+                                                        <th scope="row">{{ forloop.counter }}</th>
+                                                        <td>{{i.question}}</td>
+                                                        <td>
+                                                                      <div class="row">
+                                                                                    <a href="/QandA/getanswer/{{i.slug}}">
+                                                                                                  <p>{{i.content|safe|truncatechars:200}}</p>
+                                                                                    </a>
+                                                                      </div>
+                                                        </td>
+                                                        <td>{{i.author}}</td>
+                                                        <td>{{i.types}}</td>
+                                                        <td>{{i.language}}</td>
+                                                        <td>{{i.subject}}</td>
+                                                        <td>{{i.views}}</td>
+                                                        <td>{{i.grade}}</td>
+                                                        <td>
+                                                                      <a href="{{i.slug}}/update_ans"><button type="button" class="btn btn-sm btn-outline-primary">Edit</button></a>
+
+                                                                      <a href="{{i.slug}}/delete_ans"> <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                                                                      </a>
+                                                        </td>
+                                          </tr>
+                                          {% endifequal %}
+
+
+
+                                          {% endfor %}
+
+                            </tbody>
+              </table>
+</div>
+{% endblock body %}

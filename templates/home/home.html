@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}home{% endblock title %}
+{% block homeactive %} active {% endblock homeactive %}
+{% block homeactive2 %} active2 {% endblock homeactive2 %}
+{% block body %}
+<!-- main content  -->
+
+<section class="main-content">
+    <div class="container-xl">
+  
+        <div class="row">
+        
+            <!-- left part 1st section  -->
+            <div class="col-lg-8">
+
+
+                <div class="row flex-lg-row-reverse align-items-center ">
+                    <div class="col-10 col-sm-8 col-lg-6">
+                        <img src="{% static 'learn1.png' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                            width="700" height="500" loading="lazy">
+                    </div>
+                    <div class="col-lg-6">
+                    
+                        <h1 class="display-5 fw-bold lh-1 mb-3">Welcome to <span class="text-color">GetAnswr!</span>
+                        </h1>
+                        <P class="text-blod display-6">Start learning now!🤗</P>
+
+                    </div>
+                </div>
+                <hr class="featurette-divider">
+
+                <h3 class=" text-center  my-4 text-color">Resently Added Answers</h3>
+
+                {% for qn in new_answers %}
+
+                <div class="post post-list clearfix">
+
+                    <div class="">
+                        <ul class="meta list-inline mb-3">
+                            <li class="list-inline-item">
+                                <a href="#">
+                                    <img src="../static/images/other/user.jpg" class="author" alt="">
+
+                                </a>
+                            </li>
+
+                            <li class="list-inline-item">
+                                {{qn.author}}
+                            </li>
+                            <li class="list-inline-item">
+                                {{qn.types}}
+                            </li>
+                            <li class="list-inline-item">{{qn.timeStamp|safe | truncatechars:11}}</li>
+                        </ul>
+                        <div class="row">
+                            <a href="/QandA/getanswer/{{qn.slug}}">
+                                <h3 class="question featurette-heading">{{forloop.counter}}.{{qn.question}} </h3>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <a class="text-dark " href="/QandA/getanswer/{{qn.slug}}">
+                                <p class="answr">{{qn.content|safe|truncatechars:170}}</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                {% endfor %}
+
+
+                <div class="text-center">
+                    <button class="btn btn-simple"><a href="/QandA/" class="text-dark ">Read More</a></button>
+                </div>
+<hr>
+
+                <!-- latest ppost  -->
+                <div class="section-header">
+                    <h3 class="section-title text-center">Latest Essays</h3>
+                </div>
+
+                <div class="padding-30 rounded ">
+                    <div class="row">
+                        {% for i in read_essays %}
+                        <div class="col-md-12 col-sm-6">
+                            <!-- post  -->
+                            <div class="post post-list clearfix">
+                                <div class="thumb rounded">
+                                    <span class="post-format-sm">
+                                        <i class="icon-picture"></i>
+                                    </span>
+                                    <a href="/essay_and_bio/read/{{i.slug}}">
+                                        <div class="inner">
+                                            <img src="{{i.essay_or_bio_image.url}}" alt="">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="details">
+                                    <ul class="meta list-inline mb-3">
+                                        <li class="list-inline-item">
+
+                                            <img src="../static/images/other/user.jpg" class="author" alt="">
+                                            {{i.author}}
+
+                                        </li>
+                                        <li class="list-inline-item">
+                                            {{i.types}}
+                                        </li>
+                                        <li class="list-inline-item">{{qn.timeStamp| truncatechars:11}}</li>
+                                    </ul>
+                                    <h4 class="post-tile">
+                                        <a href="/essay_and_bio/read/{{i.slug}}">
+                                            {{i.essay_or_bio_name}}
+                                        </a>
+                                    </h4>
+                                    <a class="text-dark " href="/essay_and_bio/read/{{i.slug}}">
+                                        <p class="answr">{{i.content|safe | truncatechars:170}}</p>
+                                      </a>
+                                    <div class="post-bottom clearfix d-flex align-items-center">
+                                        <div class="social-share me-auto">
+                                            <button class="toggle-button icon-share"></button>
+                                            <ul class="icons list-unstyled list-inline mb-0">
+                                                <li class="list-inline-item">
+                                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="#"><i class="far fa-envelope"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="more-button float-end">
+                                            <a href="#"><span class="icon-options"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="text-center">
+                            <button class="btn btn-simple"><a href="/essay_and_bio/">Read More</a></button>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+            <!-- right part starts from here  -->
+
+            <div class="col-lg-4">
+                {% include 'sidebar.html' %}
+               
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock body %}

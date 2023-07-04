@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% block title %}
+{{quizs.question}}
+{% endblock title %}
+{% block qandaactive %} active {% endblock qandaactive %}
+{% load static %}
+{% block body %}
+
+
+<div class="container">
+
+  <div class="row  mt-1">
+    <div class="col-12 col-md-8 col-lg-8">
+      <div class="row">
+        {% if user.is_authenticated %}
+        {% ifequal request.user quizs.user.user %}
+        <div class="row">
+          <div class="col-6 ">
+            <a href="/QandA/{{quizs.slug}}/delete_ans">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+            </a>
+          </div>
+          <div class="col-6  text-right">
+            <a href="/QandA/{{quizs.slug}}/update_ans">
+              <button type="button" class="btn btn-sm btn-outline-primary">Edit</button>
+
+            </a>
+
+          </div>
+
+        </div>
+        {% endifequal %}
+      </div>
+
+      <div class="row ">
+        <h4 class="mt-3">{{quizs.question}}</h4>
+      </div>
+      <div class="row border-bottom pb-3">
+        <span class="pr-4">{{quizs.content|safe}}</span>
+      </div>
+      <!-- related questions -->
+      <div class="row">
+        <h4 class="question my-4 text-center"> Get Answers</h4>
+        {% for i in new_question %}
+       
+        <div class="row border-bottom pb-1">
+          <a href="/QandA/getanswer/{{i.slug}}">
+            <h5 class="question featurette-heading">{{forloop.counter}}.{{i.question}} </h5>
+          </a>
+        </div>
+       
+
+        
+        {% endfor %}
+      </div>
+
+    </div>
+
+    <div class="col-12 col-md-4 col-lg-4">
+
+      {% include 'sidebar.html' %}
+
+    </div>
+    {% else %}
+
+  </div>
+  <div class="row">
+    <h4 class="">{{quizs.question}}</h4>
+  </div>
+  <div class="row border-bottom">
+    <span class="pr-4">{{quizs.content|safe}}</span>
+  </div>
+  <!-- related questions -->
+  <div class="row">
+    <h4 class="question my-4 text-center">Get More Asnwers </h4>
+    {% for qn in new_question %}
+   
+            <div class="row py-1 border-bottom">
+              <a href="/QandA/getanswer/{{qn.slug}}">
+                <h5 class="question featurette-heading">{{forloop.counter}}.{{qn.question}} </h5>
+              </a>
+            </div>
+         
+
+    {% endfor %}
+  </div>
+
+</div>
+
+<div class="col-12 col-md-4 col-lg-4">
+
+  <div class="widget rounded">
+    <div class="widget-header text-center">
+      <h3 class="widget-title">Read Essays</h3>
+    </div>
+    <div class="widget-content">
+      {% for i in top_essays %}
+      <div class="post post-list-sm circle">
+        <div class="thumb circle">
+          <span class="number">{{forloop.counter}}</span>
+          <a href="#">
+            <div class="inner">
+              <a href="/essay_and_bio/read/{{i.slug}}"> <img class="rounded" src="{{i.essay_or_bio_image.url}}" class="" height="80" width="100%" alt=""></a>
+            </div>
+          </a>
+        </div>
+        <div class="details clearfix">
+          <h6 class="post-title my-0">
+            <a href="/essay_and_bio/read/{{i.slug}}">
+              {{i.essay_or_bio_name}}
+            </a>
+          </h6>
+          <ul class="meta list-inline mt-1 mb-0">
+            <li class="list-inline-item">{{i.timeStamp}}</li>
+          </ul>
+        </div>
+      </div>
+      {% endfor %}
+
+
+    </div>
+  </div>
+  <div class="widget rounded">
+    <div class="widget-header text-center">
+      <h3 class="widget-title">Tag Clouds</h3>
+    </div>
+
+    <div class="widget-content">
+      <a href="/search_qanda?query=what is computer" class="tag">#what is computer?</a>
+      <a href="/search_qanda?query=Essays" class="tag">#Essays</a>
+      <a href="/search_qanda?query=what is DBMS" class="tag">#what is DBMS?</a>
+
+      <a href="/search_qanda?query=what is force" class="tag">#what is force?</a>
+      <a href="/search_qanda?query=Science" class="tag">#Science</a>
+      <a href="/search_qanda?query=what is helth" class="tag">#what is helth?</a>
+
+
+      <a href="/search_qanda?query=what is computer" class="tag">#what is computer?</a>
+      <a href="/search_qanda?query=Essays" class="tag">#Essays</a>
+      <a href="/search_qanda?query=what is DBMS" class="tag">#what is DBMS?</a>
+      <a href="/search_qanda?query=what is force" class="tag">#what is force?</a>
+      <a href="/search_qanda?query=Science" class="tag">#Science</a>
+      <a href="/search_qanda?query=what is helth" class="tag">#what is helth?</a>
+
+      <a href="/search_qanda?query=what is computer" class="tag">#what is computer?</a>
+      <a href="/search_qanda?query=Essays" class="tag">#Essays</a>
+      <a href="/search_qanda?query=what is DBMS" class="tag">#what is DBMS?</a>
+      <a href="/search_qanda?query=what is force" class="tag">#what is force?</a>
+      <a href="/search_qanda?query=Science" class="tag">#Science</a>
+      <a href="/search_qanda?query=what is helth" class="tag">#what is helth?</a>
+    </div>
+  </div>
+
+</div>
+
+
+</div>
+</div>
+{% endif %}
+{% endblock body %}

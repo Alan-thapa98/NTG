@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="GetAnswr is an educational site that provides answers of different questions for the students. here you can get the content of different subjects like Computer, Science, HPE, health, Occupation, etc. Getanswr provides you the content of give-reason, technical terms, quizzes, etc. You can also get essays on different topics in here." />
+  <meta property="og:description"
+    content="GetAnswr is an educational site that provides answers of different questions for the students. here you can get the content of different subjects like Computer, Science, HPE, health, Occupation, etc. Getanswr provides you the content of give-reason, technical terms, quizzes, etc. You can also get essays on different topics in here." />
+
+  <!-- Bootstrap CSS -->
+
+  <link rel="icon" href="{% static 'logo.ico ' %}" type="image/x-icon" />
+
+  <!--  end of links of all the websit -->
+  <!--  fontawasome -->
+  <link rel="stylesheet" href="{% static 'css/style.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+  <link rel="stylesheet" href="{% static 'css/simple-line-icon.css'%}">
+  <link rel=" stylesheet" href="{% static 'css/slick.css'%}">
+  <link rel="stylesheet" href="{% static 'css/all.min.css'%}">
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+
+
+  <!-- boostrap link  -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>
+    GetAnswr.com | {% block title %} {% endblock title %}
+
+  </title>
+</head>
+
+<body>
+
+
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong>Message : </strong> {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+
+  <div class="site-wrapper ">
+
+    <header class="header-default text-capitalize">
+      <nav class="navbar navbar-expand-lg ">
+        <div class="container-xl">
+          <!-- logo  -->
+          <a href="/" class="navbar-brand">
+            <span style="font-size: 20px; font-weight:bold;">GetAnswr</span>
+          </a>
+
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+              <li class=" nav-item {% block homeactive %}  {% endblock homeactive %}"> <a class="nav-link text-muted "
+                  href="/">Home</a> </li>
+              <li class=" nav-item {% block qandaactive %}  {% endblock qandaactive %} "> <a
+                  class="nav-link text-muted " href="/QandA">Answers</a> </li>
+              <!-- <li class=" nav-item "> <a class="nav-link text-muted " href="/QandA/all_quiz">Quizs</a> </li> -->
+              <li class=" nav-item 
+              {% block essayactive %}{% endblock essayactive %} ">
+                <a class="nav-link text-muted " href="/essay_and_bio">Essays</a>
+              </li>
+              <li class=" nav-item {% block dictionaryctive %}{% endblock dictionaryctive %} ">
+                <a class="nav-link text-muted " href="/dictionary">Dictionary</a>
+              </li>
+              <li class=" nav-item {% block contactusactive %}{% endblock contactusactive %}">
+                <a href="/contactus" class="nav-link text-muted ">contact us </a>
+              </li>
+
+
+
+              <li class=" nav-item {% block aboutactive %}{% endblock aboutactive %} ">
+                <a href="/about" class="nav-link text-muted ">About us </a>
+              </li>
+              <li class="nav-item dropdown ">
+                <a href="#" class="nav-link text-muted  dropdown-toggle">More</a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="#" class="dropdown-item">Privacy & Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item">Terms & Conditions</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item">Animes</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item">Categorys</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item">Subjects</a>
+                  </li>
+
+                </ul>
+              </li>
+
+
+
+
+
+              <li class=" nav-item ">
+                <a class="nav-link text-muted ">
+
+                  <span id="mybtn" style="cursor:pointer; color: rgba(53, 226, 0, 0.795) !important;"
+                    onclick="darkmode()">Dark</span>
+                </a>
+
+              </li>
+
+
+              <style>
+                .nav-link text-muted {
+                  color: #203656 !important;
+
+
+                }
+              </style>
+              <!-- <li class="nav-item dropdown ">
+                                <a href="/" class="nav-link text-muted  dropdown-toggle">more</a>
+                                <ul class="dropdown-menu">
+                                     <li>
+                                        <a href="/contactus" class="dropdown-item">contact us </a>
+                                    </li>
+                                    <li>
+                                        <a href="/about" class="dropdown-item">About us </a>
+                                    </li>
+                                             
+                                </ul>
+                            </li> -->
+
+            </ul>
+          </div>
+
+          <!-- right side of header  -->
+          <div class="header-right">
+
+            <!-- buttons  -->
+            <div class="header-buttons">
+              <button class="search icon-button">
+                <i class="icon-magnifier"></i>
+              </button>
+
+              <button class="burger-menu icon-button">
+                <span class="burger-icon"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+
+    </header>
+
+
+
+    {% block body %}
+
+    {% endblock body %}
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="page-footer font-small indigo mt-4">
+
+      <!-- Footer Links -->
+      <div class="container">
+
+        <!-- Grid row-->
+        <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+
+          <!-- Grid column -->
+          <div class="col-md-2 mb-3">
+            <h6 class="text-capitalize  font-weight-bold">
+              <a href="/about">About us</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 mb-3">
+            <h6 class="text-capitalize  font-weight-bold">
+              <a href="/contactus">contactus</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 mb-3">
+            <h6 class="text-capitalize  font-weight-bold">
+              <a href="/policy_privacy">Privacy & Policy </a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 mb-3">
+            <h6 class="text-capitalize  font-weight-bold">
+              <a href="/termsandcontions">Terms & Conditions</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 mb-3">
+            <h6 class="text-capitalize  font-weight-bold">
+              <a href="/contactus">NeedHelp!</a>
+            </h6>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid row-->
+          <hr class="rgba-white-light" style="margin: 0 15%;">
+
+
+          <!-- Footer Links -->
+
+          <!-- Copyright -->
+          <div class="footer-copyright text-center py-3"> © {{year}} All Rights Reserved
+            <a href="/"> GetAnswr.com </a>
+          </div>
+          <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+
+  </div>
+
+
+  <!-- canvas menu  -->
+  <div class="canvas-menu d-flex align-items-end flex-column">
+    <button style=" color: rgb(53, 226, 0);" class="btn-close text-muted" aria-label="Close" type="button"></button>
+
+    <div style="margin-bottom: 48px;
+    margin-top: 44px;
+    width: 100%;">
+      <span style="font-size: 20px; font-weight:bold;     color: rgb(53, 226, 0);
+">GetAnswr</span>
+
+    </div>
+    <nav>
+      <ul class="vertical-menu">
+
+        <li class="  nav-item {% block homeactive2 %}  {% endblock homeactive2 %}"> <a  class="nav-link" href="/">Home</a> </li>
+        <li class=" nav-item {% block qandaactive2 %}  {% endblock qandaactive2 %}"> <a class="nav-link"  href="/QandA">Answers</a> </li>
+        <!-- <li class="{% block quizactive %}  {% endblock quizactive %}"> <a href="/QandA/all_quiz">Quiz</a> </li>
+                <li class=" {% block dbactive %}  {% endblock dbactive %}"> <a href="/QandA/all_db">Diff_Bet</a> </li> -->
+        <li class=" nav-item {% block essayactive3 %}  {% endblock essayactive3 %}"> <a  class="nav-link" href="/essay_and_bio">Essays</a> </li>
+        <li class=" nav-item {% block dictionaryctive2 %}  {% endblock dictionaryctive2 %}"> <a class="nav-link"  href="/dictionary">Dictionary</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item PlayGame"> <a class="nav-link" href="/all_games">PlayGames</a> </li>
+        <li class=" nav-item ">
+          <a href="/QandA/dashboard_ans" class="nav-link text-muted ">dashboard_ans </a>
+        </li>
+        <li class=" nav-item ">
+          <a href="/essay_and_bio/dashboard_essay" class="nav-link text-muted ">dashboard_essay </a>
+        </li>
+        <li class=" nav-item ">
+          <a href="/essay_and_bio/upload/upload_essay_and_bio_on_getanswr_9813587726" class="nav-link text-muted ">Add
+            Essays.. </a>
+        </li>
+        <li class=" nav-item ">
+          <a href="/QandA/upload_qanda_on_getanswr_9813587726" class="nav-link text-muted ">Add Ans..</a>
+
+        </li>
+
+
+
+        {% endif %}
+        <!-- <li><a href="#">Latest</a></li>
+                <li><a href="#">Trending</a></li> -->
+        <li class=" nav-item {% block aboutactive2 %}  {% endblock aboutactive2 %}"> <a class="nav-link" href="/about">About Us</a></li>
+        <li class=" nav-item {% block contactusactive2 %}  {% endblock contactusactive2 %} "><a class="nav-link"
+            href="/contactus">ContactUs</a></li>
+
+      </ul>
+    </nav>
+
+
+    <ul class="social-icons list-unstyled list-inline mb-0 mt-auto w-100">
+      <li class="list-inline-item">
+        <P>© {{year}} </P>
+      </li>
+      <li class="list-inline-item">
+        <P>All Rights Reserved </P>
+      </li>
+      <li class="list-inline-item">
+        <P><a href="/"> GetAnswr.com </a></P>
+      </li>
+    </ul>
+  </div>
+
+
+  <!-- search pop up  -->
+  <div class="search-popup">
+    <button class="btn-close" aria-label="Close" type="button"></button>
+
+
+    <div class="search-content">
+      <!-- <div class="text-center">
+                <h3 class="mb-4 mt-0">Press ESC to close</h3>
+            </div> -->
+
+      <p class="text-secondary"> To search Eassys and Bios click here: <a href="/essay_and_bio/"> Essays/Bios</a> </p>
+      <form action="/search_qanda" class="d-flex search-form" method="get">
+        <input id="tags" name="query" type="text" autocomplete="off" height="10%" width="100%"
+          placeholder="Search Answers/Quiz on GetAnswr" class="form-control me-2">
+        <button class="btn btn-default btn-lg" type="submit">
+          <i class="icon-magnifier"></i>
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+<style>
+  .active2{
+    color: #fff  !important;
+     background: #6efc8a;
+     border-radius: 2px;
+     background-color: #6efc8a  !important;
+     
+     background-image: linear-gradient(315deg, #6efc8a 0%, rgb(26, 169, 0) 74%) !important;
+  }
+  .active2:hover {
+    background-color: #6efc8a !important;
+    color: rgba(255, 255, 255, 0.651) !important;
+}
+</style>
+  <script>
+    $(function () {
+      var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+      ];
+      $("#tags").autocomplete({
+        source: availableTags
+      });
+    });
+  </script>
+
+
+  <script>
+    function darkmode() {
+      var SetTheme = document.body;
+      SetTheme.classList.toggle("dark-mode")
+      var theme;
+      if (SetTheme.classList.contains("dark-mode")) {
+        console.log("Dark mode");
+        theme = "DARK";
+      } else {
+        console.log("Light mode");
+        theme = "LIGHT";
+      }
+      // save to localStorage
+      localStorage.setItem("PageTheme", JSON.stringify(theme));
+      // ensure you convert to JSON like i have done -----JSON.stringify(theme)
+    }
+
+
+    let GetTheme = JSON.parse(localStorage.getItem("PageTheme"));
+    if (GetTheme === "DARK") {
+      document.body.classList = "dark-mode";
+    } else {
+      document.body.classList = "";
+    }
+
+
+
+  </script>
+
+  {% block js %}
+
+  {% endblock js %}
+
+
+  <!-- javascripts  -->
+  <script src="{% static 'js/jquery.min.js'%}"></script>
+  <script src="{% static 'js/popper.min.js'%}"></script>
+  <script src="{% static 'js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'js/slick.min.js'%}"></script>
+  <script src="{% static 'js/jquery.sticky-sidebar.min.js'%}"></script>
+  <script src="{% static 'js/main.js'%}"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typed.js"></script>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+  <script>
+    tinymce.init({
+      selector: '#mytextarea'
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+Update question answers, quiz, different between etc.
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+              <div class='ui segment'>
+                            <h3>Update post</h3>
+                            <form action="" method="POST" class="ui form" enctype="multipart/form-data">
+                                          {% csrf_token %}
+                                          {{form}}
+                                          <button type='submit' style="width:95%; margin-top:10px;"
+                                                        class="btn btn-sm bg-success">Update</button>
+                            </form>
+
+              </div>
+              <style>
+                            input {
+                                          width: 92%;
+                                          margin-top: 10px;
+                            }
+
+                            textarea {
+                                          width: 95%;
+                                          margin-top: 10px;
+                            }
+              </style>
+</div>
+<script>
+              alert("are you sure you want to update the inforation? ")
+
+
+
+</script>
+{% endblock body%}

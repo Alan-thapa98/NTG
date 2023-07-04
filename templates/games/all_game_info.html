@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+ Play Games
+{% endblock title %}
+{% block gameactive %} active {% endblock gameactive %}
+{% block body %}
+
+<div class="container">
+      <div class="row text-center mt-2 ">
+
+     {% for i in all_games %}
+          <div class="col-12 col-md-3 col-lg-3 border ">
+            <img src="{{i.game_image.url}}" style="height: 250px!important;width:250px!important;" class="pt-3" alt="">
+
+            <h2 class="text-capitalize ">{{i.game_name}}</h2>
+                          <small class="p-2 ">{{i.game_info| truncatechars:120}}</small>
+            <p><a class="btn btn-secondary" href="{{i.game_link}}">play now »</a></p>
+          </div>
+     {% endfor %}
+
+</div>
+</div>
+ 
+{% endblock body %}

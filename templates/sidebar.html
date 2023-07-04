@@ -1,0 +1,113 @@
+<div class="sidebar">
+                   
+
+
+
+    <div class="widget rounded">
+        <div class="widget-header text-center">
+          <h3 class="widget-title">Read Essays</h3>
+        </div>
+        <div class="widget-content">
+          {% for i in read_essays  %}
+          <div class="post post-list-sm circle">
+            <div class="thumb circle">
+              <span class="number">{{forloop.counter}}</span>
+              <a href="#">
+                <div class="inner">
+                  <a href="/essay_and_bio/read/{{i.slug}}"> <img class="rounded" src="{{i.essay_or_bio_image.url}}"
+                      class="" height="80" width="100%" alt=""></a>
+                </div>
+              </a>
+            </div>
+            <div class="details clearfix">
+              <h6 class="post-title my-0">
+                <a href="/essay_and_bio/read/{{i.slug}}">
+                  {{i.essay_or_bio_name}}
+                </a>
+              </h6>
+              <ul class="meta list-inline mt-1 mb-0">
+                <li class="list-inline-item">{{i.timeStamp}}</li>
+              </ul>
+            </div>
+          </div> 
+          {% endfor %}
+              </div>
+      </div>
+
+    <div class="widget rounded">
+        <div class="widget-header text-center">
+            <h3 class="widget-title">Tag Clouds</h3>
+        </div>
+
+
+
+        <div class="widget-content">
+            <!-- category page which is not developed yet  -->
+            {% for i in Clouds_tags  %}
+            <a href="/search_qanda?query={{i.subject}}" class="tag"> #{{i.subject}} </a>
+            {% endfor %}
+
+            <a href="/search_essays?query=Essays" class="tag">#Essays</a>
+            <a href="/search_qanda?query=Quiz" class="tag">#Quizs</a>
+            <a href="/search_qanda?query=QandA" class="tag">#QandA</a>
+            <a href="/search_essays?query=Biography" class="tag">#Biography</a>
+
+        </div>
+    </div>
+    
+    <div class="widget rounded">
+        <div class="widget-about text-center">
+            <span>GetAnswr.com</span>
+               <p class="mb-4" style="text-align: justify;">
+                GetAnswr is an educational site that provides answers of different questions for the
+                students.
+                here you can get the content of different subjects.
+                Getanswr provides you the content of give-reason, technical terms, quizzes, etc.
+                You can also get essays on different topics in here.
+            <p>This website is under construction. Some functions may not work properly. We are not
+                connected to social media yet. The
+                social media icons and share functions will not work. Social media icons are only for
+                decoration.</p>
+            </p>
+            </p>
+            <ul class="social-icons list-unstyled list-inline mb-0">
+                <li class="list-inline-item">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#"><i class="far fa-envelope"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="widget rounded">
+        <div class="widget-header text-center">
+            <h3 class="widget-title">Explore Topics</h3>
+        </div>
+        <div class="widget-content">
+            <ul class="list">
+                <li><a href="/search_essays?query=Biography">Biography</a><span>(15)</span></li>
+                <li><a href="/search_qanda?query=QandA">QandA</a><span>(11)</span></li>
+                <li><a href="/search_qanda?query=Diff-between">Different Bewteen</a><span>(9)</span></li>
+                <li><a href="/search_qanda?query=Quiz">Quiz</a><span>(22)</span></li>
+                <li><a href="/search_essays?query=essays">Essays</a><span>(10)</span></li>
+                <li><a href="/search_qanda?query=QandA">Question Answer</a><span>(24)</span></li>
+                <li><a href="/search_qanda?query=Science">Science</a><span>(12)</span></li>
+                <li><a href="/search_qanda?query=Quiz">General Knowledge</a><span>(12)</span></li>
+                
+            </ul>
+        </div>
+    </div>
+</div>

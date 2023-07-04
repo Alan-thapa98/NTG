@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} Contact{% endblock title %}
+{% block contactusactive %} active{% endblock contactusactive %}
+{% block contactusactive2 %} active2{% endblock contactusactive2 %}
+
+{% block body %}
+<div class="container my-3">
+
+    <form action="/contactus" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" name="name" aria-describedby="name">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Email address" name="email"
+                aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" class="form-control" placeholder="Phone Number" id="phone" name="phone">
+        </div>
+
+        <div class="form-group">
+            <label for="content">Describe your issue :</label>
+            <textarea class="form-control" name="content" placeholder="Describe your issue" id="content" cols="30"
+                rows="5"></textarea>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary mt-1">Submit</button>
+    </form>
+
+    <style>
+        form {
+            border-radius: 20px;
+            border: 2px red;
+            padding: 20px;
+            margin: 20px;
+
+        }
+    </style>
+</div>
+<style>
+
+</style>
+{% endblock %}
